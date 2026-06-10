@@ -2,40 +2,28 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подключение к Серверу...</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9; color: #333; }
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
+    <title>Загрузка...</title>
 </head>
 <body>
-    <h2>Подключение к домашнему серверу...</h2>
-    <div class="loader"></div>
-    <p>Пожалуйста, подождите, выполняем безопасный переход.</p>
+    <h3>Перенаправление на домашний сервер...</h3>
 
     <script>
-        // Твоя ссылка Ngrok (убедись, что в конце стоит слэш /)
-        const url = "https://nonsymphonious-tran-aciform.ngrok-free.dev/";
-
-        // Шаг 1: Ставим куку локально на домен github
-        document.cookie = "ngrok-skip-browser-warning=true; path=/; max-age=315360000; SameSite=None; Secure";
-
-        // Шаг 2: Делаем фоновый запрос с нужным заголовком, чтобы пробить защиту Ngrok
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'ngrok-skip-browser-warning': 'true'
-            },
-            mode: 'no-cors'
-        }).then(() => {
-            // Шаг 3: Как только запрос прошел — мгновенно перекидываем человека
-            window.location.href = url;
-        }).catch(() => {
-            // Если сеть мигнула, всё равно кидаем на сайт
-            window.location.href = url;
-        });
+        var url = "https://nonsymphonious-tran-aciform.ngrok-free.dev/";
+        
+        // Старый надежный способ создания запроса
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        
+        // Передаем тот самый заголовок с любым значением (выбрали "true")
+        xhr.setRequestHeader("ngrok-skip-browser-warning", "true");
+        
+        xhr.onreadystatechange = function() {
+            // Как только запрос ушел и сервер ответил (неважно как), прыгаем на сайт
+            if (xhr.readyState === 4) {
+                window.location.href = url;
+            }
+        };
+        xhr.send();
     </script>
 </body>
 </html>
