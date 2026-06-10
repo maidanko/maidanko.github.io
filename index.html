@@ -2,28 +2,112 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Загрузка...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашний сервер Maidanko</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 550px; /* Немного расширил, чтобы двум скринам было просторнее */
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 20px 0;
+        }
+        h1 { margin-bottom: 10px; font-size: 26px; }
+        p { font-size: 15px; opacity: 0.9; line-height: 1.5; }
+        .instruction {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 14px;
+        }
+        .instruction h3 { margin-top: 0; color: #ffb703; }
+        
+        /* Новые стили для горизонтального размещения */
+        .screenshot-container {
+            display: flex;
+            gap: 10px; /* Расстояние между скриншотами */
+            margin: 15px 0;
+        }
+        .screenshot-box {
+            flex: 1; /* Делит пространство поровну между картинками */
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .screenshot-box img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ffb703;
+            color: #212529;
+            text-decoration: none;
+            padding: 15px 30px;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 18px;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 183, 3, 0.4);
+            width: 80%;
+            box-sizing: border-box;
+        }
+        .btn:hover {
+            background: #fb8500;
+            transform: scale(1.05);
+        }
+        
+        /* На телефонах, если скрины станут слишком мелкими, они встанут друг под друга */
+        @media (max-width: 480px) {
+            .screenshot-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h3>Перенаправление на домашний сервер...</h3>
 
-    <script>
-        var url = "https://nonsymphonious-tran-aciform.ngrok-free.dev/";
+    <div class="container">
+        <h1>🚀 Добро пожаловать!</h1>
+        <p>Вы подключаетесь к домашнему PHP-серверу на WD My Cloud.</p>
         
-        // Старый надежный способ создания запроса
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
-        
-        // Передаем тот самый заголовок с любым значением (выбрали "true")
-        xhr.setRequestHeader("ngrok-skip-browser-warning", "111");
-        
-        xhr.onreadystatechange = function() {
-            // Как только запрос ушел и сервер ответил (неважно как), прыгаем на сайт
-            if (xhr.readyState === 4) {
-                window.location.href = url;
-            }
-        };
-        xhr.send();
-    </script>
+        <div class="instruction">
+            <h3>⚠️ Важно!!!:</h3>
+            После нажатия на кнопку ниже может появиться синий экран безопасности Ngrok. Не паникуем! Ищем там синюю кнопку <b>«Visit Site»</b>, или <b>«Посетите сайт»</b>, и жмем её!
+            
+            <div class="screenshot-container">
+                <div class="screenshot-box">
+                    <img src="Screenshot_1.png" alt="Шпаргалка 1">
+                </div>
+                <div class="screenshot-box">
+                    <img src="Screenshot_2.png" alt="Шпаргалка 2">
+                </div>
+            </div>
+        </div>
+
+        <a href="https://nonsymphonious-tran-aciform.ngrok-free.dev/" class="btn">Перейти на проект →</a>
+    </div>
+
 </body>
 </html>
